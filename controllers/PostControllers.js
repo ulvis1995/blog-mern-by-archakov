@@ -1,6 +1,6 @@
 import PostModel from '../models/Post.js';
 
-export const getLatsTags = async (req, res) => {
+export const getLastTags = async (req, res) => {
   try {
     const posts = await PostModel.find().limit(5).exec();
     const tags = posts.map(obj => obj.tags).flat().slice(0, 5);

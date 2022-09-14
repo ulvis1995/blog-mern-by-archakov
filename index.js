@@ -6,7 +6,6 @@ import mongoose from 'mongoose';
 import {loginValidator, postCreateValidation, registerValidator} from './validations.js';
 import {PostController, UserController} from './controllers/index.js';
 import { checkAuth, handleValidationErrors } from './utils/index.js';
-import { getLatsTags } from './controllers/PostControllers.js';
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -40,9 +39,9 @@ app.post('/upload', checkAuth, upload.single('image'), (req, res) => {
   })
 });
 
-app.get('/tags', PostController.getLatsTags);
+app.get('/tags', PostController.getLastTags);
 app.get('/posts', PostController.getAll);
-app.get('/posts/tags', PostController.getLatsTags);
+app.get('/posts/tags', PostController.getLastTags);
 app.get('/posts/:id', PostController.getOne);
 app.post('/posts',checkAuth, postCreateValidation, PostController.create);
 app.delete('/posts/:id', checkAuth, PostController.remove);
