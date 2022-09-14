@@ -30,10 +30,6 @@ app.use(express.json());
 app.use(cors());
 app.use('/uploads', express.static('uploads'));
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
-
 app.post('/auth/login',loginValidator, handleValidationErrors, UserController.login);
 app.post ('/auth/register', registerValidator, handleValidationErrors, UserController.register);
 app.get('/auth/me', checkAuth, UserController.getMe);
